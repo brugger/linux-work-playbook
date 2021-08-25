@@ -4,6 +4,9 @@
   connection: local
 
   tasks:
+    - name: add repos
+      include: tasks/repos.yml
+
     - name: install base packages
       include: tasks/base_packages.yml
 

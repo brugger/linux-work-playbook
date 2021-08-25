@@ -1,17 +1,21 @@
-- name: Add microsoft signing key
-  ansible.builtin.apt_key:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
+---
+- name: add some non-standard repos
 
+  block:
 
-- name: Visual Studio Code repository
-  ansible.builtin.apt_repository:
-    repo: https://packages.microsoft.com/repos/code stable main
-    state: present
-
-- name: Visual Studio Code repository
-  ansible.builtin.apt_repository:
-    repo: https://packages.microsoft.com/yumrepos/azure-cli stable main
-    state: present
-
-
+    - name: Add microsoft signing key
+      ansible.builtin.apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+    
+    - name: Visual Studio Code repository
+      ansible.builtin.apt_repository:
+        repo: deb https://packages.microsoft.com/repos/code stable main
+        state: present
+    
+    - name: Visual Studio Code repository
+      ansible.builtin.apt_repository:
+        repo: deb https://packages.microsoft.com/yumrepos/azure-cli stable main
+        state: present
+    
+    
