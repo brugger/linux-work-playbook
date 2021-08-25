@@ -32,6 +32,8 @@
         - sqlite3
         - curl
         - wget
+        - code 
+        - azure-cli
 
         
         
