@@ -13,9 +13,9 @@
         repo: deb https://packages.microsoft.com/repos/code stable main
         state: present
     
-    - name: Visual Studio Code repository
+    - name: Azure-cli repository
       ansible.builtin.apt_repository:
-        repo: deb https://packages.microsoft.com/yumrepos/azure-cli stable main
+        repo: deb https://packages.microsoft.com/repos/azure-cli stable main
         state: present
     
     

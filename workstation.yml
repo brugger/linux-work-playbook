@@ -2,6 +2,7 @@
 
   hosts: localhost
   connection: local
+  become: true
 
   tasks:
     - name: add repos
@@ -11,4 +12,5 @@
       include: tasks/base_packages.yml
 
     - name: home layout
+      become: brugger
       include: tasks/home_layout.yml
