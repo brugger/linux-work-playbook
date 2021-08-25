@@ -10,12 +10,25 @@
     
     - name: Visual Studio Code repository
       ansible.builtin.apt_repository:
-        repo: deb https://packages.microsoft.com/repos/code stable main
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/code stable main
         state: present
     
     - name: Azure-cli repository
       ansible.builtin.apt_repository:
-        repo: deb https://packages.microsoft.com/repos/azure-cli focal main
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli focal main
         state: present
-    
+
+    - name: Add google signing key
+      ansible.builtin.apt_key:
+        url: https://dl.google.com/linux/linux_signing_key.pub
+        state: present
+
+
+    - name: google-chrome repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+        state: present
+
+     
+
     
