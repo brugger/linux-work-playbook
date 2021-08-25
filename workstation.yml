@@ -1,0 +1,9 @@
+- hosts: all
+
+  become: true
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: install base packages
+      include: tasks/base_packages.yml

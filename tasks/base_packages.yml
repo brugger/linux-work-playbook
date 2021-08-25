@@ -1,0 +1,37 @@
+- name: Install and cofigure standard linux vm packages
+
+  block:
+
+    - name: install packages
+      package:
+        name:
+        - python3.8
+        - python3-pip
+        - python3.8-venv
+        - git
+        - jq
+        - vim 
+        - singularity
+        - bzip2
+        - aspell-en
+        - emacs
+        - evolution
+        - feh
+        - gimp
+        - git
+        - gitk
+        - java-common
+        - less 
+        - libreoffice
+        - locales
+        - lsof
+        - meld
+        - nmap
+        - p7zip
+        - r-base
+        - sqlite3
+        - curl
+        - wget
+
+        
+        
