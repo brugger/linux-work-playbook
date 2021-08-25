@@ -34,7 +34,7 @@
         - wget
         - code 
         - azure-cli
-        - google-chrome
+        - google-chrome-stable
 
         
         
