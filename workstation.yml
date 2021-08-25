@@ -12,5 +12,4 @@
       include: tasks/base_packages.yml
 
     - name: home layout
-      become: brugger
       include: tasks/home_layout.yml

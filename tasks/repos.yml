@@ -15,7 +15,7 @@
     
     - name: Azure-cli repository
       ansible.builtin.apt_repository:
-        repo: deb https://packages.microsoft.com/repos/azure-cli stable main
+        repo: deb https://packages.microsoft.com/repos/azure-cli focal main
         state: present
     
     

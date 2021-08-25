@@ -5,13 +5,13 @@
 
     - name: make default dirs in home
       ansible.builtin.file:
-        path: "{{ansible_env.HOME}}/{{item}}"
+        path: "/home/brugger/{{item}}"
         state: directory
-        owner: "{{ansible_env.USER}}"
+        owner: brugger
       loop:
         - bin
         - tmp
         - projects
         - software
 
-        
+
