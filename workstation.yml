@@ -7,3 +7,6 @@
   tasks:
     - name: install base packages
       include: tasks/base_packages.yml
+
+    - name: home layout
+      include: tasks/home_layout.yml

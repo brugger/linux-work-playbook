@@ -1,0 +1,17 @@
+---
+- name: Homedir layout
+
+  block:
+
+    - name: make default dirs in home
+      ansible.builtin.file:
+        path: "{{ansible_env.HOME}}/{{item}}"
+        state: directory
+        owner: "{{ansible_env.USER}}"
+      loop:
+        - bin
+        - tmp
+        - projects
+        - software
+
+        
