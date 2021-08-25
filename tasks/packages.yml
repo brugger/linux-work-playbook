@@ -42,7 +42,9 @@
         - wget
 #        - docker
 #        - singularity
-        - zoom
+#        - zoom
+        - code
+        - azure-cli
 
         
         
