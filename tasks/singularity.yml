@@ -40,4 +40,6 @@
       command:
         chdir: /tmp/singularity
         cmd: ./mconfig && make -C ./builddir && make -C ./builddir install
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin/"
     
