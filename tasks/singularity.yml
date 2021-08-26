@@ -43,7 +43,14 @@
       environment:
         PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin/"
     
-    - name: build and install singularity
+    - name: build  singularity
+      command:
+        chdir: /tmp/singularity
+        cmd:  make -C ./builddir 
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/go/bin/"
+
+    - name: install singularity
       command:
         chdir: /tmp/singularity
         cmd:  make -C ./builddir install
