@@ -56,25 +56,23 @@
 
     - name: check if influx executable is present
       shell: "which influx"
-      register: result
+      register: influx_bin
       ignore_errors: true
-
-
 
 
     - name: install influx2 
       apt:
         deb: https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.8-amd64.deb
-      when: result.rc != 0
+      when: influx_bin.rc != 0
         
     - name: start influxdb
       service:
         name: influxdb
         state: restarted
-      when: result.rc != 0
+      when: influx_bin.rc != 0
 
     - name: check if go executable is present
-      shell: /usr/local/go/bin/go
+      shell: "/usr/local/go/bin/go version"
       register: result
       ignore_errors: true
 
