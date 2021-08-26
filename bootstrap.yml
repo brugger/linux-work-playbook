@@ -13,3 +13,8 @@
 
     - name: home layout
       include: tasks/home_layout.yml
+
+    - name: install and configure dev stack
+      include: tasks/dev_stack.yml
+
+

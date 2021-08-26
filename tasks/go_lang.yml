@@ -1,0 +1,26 @@
+---
+- name: install go lang
+  block:
+    
+    - name: download latest version
+      get_url:
+        url: https://golang.org/dl/go1.17.linux-amd64.tar.gz
+        dest: /tmp/go.tgz
+
+    - name: delete old installation (if present)
+      file:
+        state: absent
+        path: /usr/local/go/
+
+
+    - name: Extract go-lang into /usr/local/
+      ansible.builtin.unarchive:
+        src: /tmp/go.tgz
+        dest: /usr/local/
+
+    - name: add file to /etc/profile.d with new go path 
+      copy:
+        src: files/system/99-gopath
+        dest: /etc/profile.d/99-gopath
+        
+            

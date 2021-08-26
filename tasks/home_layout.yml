@@ -12,6 +12,19 @@
         - bin
         - tmp
         - projects
+        - projects/kbr/
+        - projects/nsm/
+        - projects/misc/
         - software
+        - .ssh
+
+
+
+    - name: make .ssh dirs in home
+      ansible.builtin.file:
+        path: "/home/brugger/.ssh"
+        state: directory
+        owner: brugger
+        mode: 0600
 
 

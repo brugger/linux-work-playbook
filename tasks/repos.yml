@@ -23,12 +23,39 @@
         url: https://dl.google.com/linux/linux_signing_key.pub
         state: present
 
-
     - name: google-chrome repository
       ansible.builtin.apt_repository:
         repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
         state: present
 
-     
 
-    
+    - name: Add docker signing key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: docker repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} main
+        state: present
+        
+    - name: Add cloudsmith Erlang signing key
+      ansible.builtin.apt_key:
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key
+        state: present
+
+    - name: Add cloudsmith rabbitmq signing key
+      ansible.builtin.apt_key:
+        url: https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key
+        state: present
+
+    - name: erlang for rabbitmq repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ansible_distribution_release}} main
+        state: present
+
+    - name: erlang rabbitmq-server repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb/ubuntu {{ansible_distribution_release}} main
+        state: present
+

@@ -2,29 +2,28 @@
 
   block:
 
-    - name: install packages
+    - name: install standard packages
       package:
         name:
         - python3.8
         - python3-pip
         - python3.8-venv
         - git
+        - gitk
         - jq
         - vim 
-        - singularity
         - bzip2
         - aspell-en
         - emacs
         - evolution
         - feh
         - gimp
-        - git
-        - gitk
         - java-common
         - less 
         - libreoffice
         - locales
         - lsof
+        - iotop
         - meld
         - nmap
         - p7zip
@@ -32,9 +31,13 @@
         - sqlite3
         - curl
         - wget
-        - code 
-        - azure-cli
-        - google-chrome-stable
+
+
+# missing packages:        
+#        - singularity (needs building!)
+#        - influx?
+#        - telegraf?
+
 
         
         

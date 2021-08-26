@@ -1,0 +1,70 @@
+---
+- name: install and configure basic development stack
+
+  block:
+
+    - name: install packages
+      package:
+        name:
+        - postgresql-client
+        - postgresql-10
+        - mariadb-client
+        - mariadb-server
+
+    - name: install microsoft packages
+      package:
+        name:
+        - code 
+        - azure-cli
+
+    - name: install google packages
+      package:
+        name:
+        - google-chrome-stable
+
+
+    - name: install docker packages
+      package:
+        name:
+        - docker-ce 
+        - docker-ce-cli 
+        - containerd.io
+
+
+    - name: install rabbitmq-server packages
+      package:
+        name:
+        - rabbitmq-server
+        - erlang-base
+        - erlang-asn1 
+        - erlang-crypto 
+        - erlang-eldap 
+        - erlang-ftp 
+        - erlang-inets
+        - erlang-mnesia 
+        - erlang-os-mon 
+        - erlang-parsetools 
+        - erlang-public-key
+        - erlang-runtime-tools
+        - erlang-snmp erlang-ssl
+        - erlang-syntax-tools 
+        - erlang-tftp 
+        - erlang-tools 
+        - erlang-xmerl
+
+    - name: start rabbitmq
+      service:
+        name: rabbitmq-server
+        state: restarted
+
+    - name: install influx2 
+      apt:
+        deb: https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.8-amd64.deb
+        
+    - name: start influxdb
+      service:
+        name: influxdb
+        state: restarted
+
+    - name: install go-lang
+      include: go_lang.yml
