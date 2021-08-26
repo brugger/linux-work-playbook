@@ -7,7 +7,7 @@
       package:
         name:
         - postgresql-client
-        - postgresql-10
+        - postgresql-12
         - mariadb-client
         - mariadb-server
 

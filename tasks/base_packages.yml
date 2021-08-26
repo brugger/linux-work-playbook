@@ -2,7 +2,7 @@
 
   block:
 
-    - name: install standard packages
+    - name: install base packages
       package:
         name:
         - python3.8
