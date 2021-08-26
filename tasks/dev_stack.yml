@@ -48,39 +48,46 @@
       package:
         name:
         - rabbitmq-server
-#        - erlang-base
-#        - erlang-asn1 
-#        - erlang-crypto 
-#        - erlang-eldap 
-#        - erlang-ftp 
-#        - erlang-inets
-#        - erlang-mnesia 
-#        - erlang-os-mon 
-#        - erlang-parsetools 
-#        - erlang-public-key
-#        - erlang-runtime-tools
-#        - erlang-snmp erlang-ssl
-#        - erlang-syntax-tools 
-#        - erlang-tftp 
-#        - erlang-tools 
-#        - erlang-xmerl
 
     - name: start rabbitmq
       service:
         name: rabbitmq-server
         state: restarted
 
+    - name: check if influx executable is present
+      shell: "which influx"
+      register: result
+      ignore_errors: true
+
+
+
+
     - name: install influx2 
       apt:
         deb: https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.8-amd64.deb
+      when: result.rc != 0
         
     - name: start influxdb
       service:
         name: influxdb
         state: restarted
+      when: result.rc != 0
+
+    - name: check if go executable is present
+      shell: /usr/local/go/bin/go
+      register: result
+      ignore_errors: true
+
 
     - name: install go-lang
       include: go_lang.yml
+      when: result.rc != 0
+
+    - name: check if singularity executable is present
+      shell: "which singularity"
+      register: result
+      ignore_errors: true
 
     - name: install singularity
       include: singularity.yml
+      when: result.rc != 0
