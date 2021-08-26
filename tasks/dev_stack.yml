@@ -73,19 +73,18 @@
 
     - name: check if go executable is present
       shell: "/usr/local/go/bin/go version"
-      register: result
+      register: go_bin
       ignore_errors: true
-
 
     - name: install go-lang
       include: go_lang.yml
-      when: result.rc != 0
+      when: go_bin.rc != 0
 
     - name: check if singularity executable is present
       shell: "which singularity"
-      register: result
+      register: singularity_bin
       ignore_errors: true
 
     - name: install singularity
       include: singularity.yml
-      when: result.rc != 0
+      when: singularity_bin.rc != 0
