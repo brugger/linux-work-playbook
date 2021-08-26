@@ -31,6 +31,19 @@
         - containerd.io
 
 
+    - name: Ensure docker group exists
+      ansible.builtin.group:
+        name: docker
+        state: present
+
+
+    - name: adding user brugger to group docker
+      user:
+        name: brugger
+        groups: docker
+        append: yes
+
+
     - name: install rabbitmq-server packages
       package:
         name:
