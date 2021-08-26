@@ -81,3 +81,6 @@
 
     - name: install go-lang
       include: go_lang.yml
+
+    - name: install singularity
+      include: singularity.yml
