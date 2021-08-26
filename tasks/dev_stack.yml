@@ -43,7 +43,6 @@
         groups: docker
         append: yes
 
-
     - name: install rabbitmq-server packages
       package:
         name:
@@ -59,12 +58,24 @@
       register: influx_bin
       ignore_errors: true
 
-
     - name: install influx2 
       apt:
         deb: https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.8-amd64.deb
       when: influx_bin.rc != 0
         
+
+    - name: check if influx executable is present
+      shell: "which telegraf"
+      register: telegraf_bin
+      ignore_errors: true
+
+    - name: install telegraf
+      apt:
+        deb: https://dl.influxdata.com/telegraf/releases/telegraf_1.19.3-1_amd64.deb
+      when: telegraf_bin.rc != 0
+
+
+
     - name: start influxdb
       service:
         name: influxdb
@@ -88,3 +99,4 @@
     - name: install singularity
       include: singularity.yml
       when: singularity_bin.rc != 0
+

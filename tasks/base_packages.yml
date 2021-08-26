@@ -33,10 +33,6 @@
         - wget
 
 
-# missing packages:        
-#        - singularity (needs building!)
-#        - influx?
-#        - telegraf?
 
 
         
