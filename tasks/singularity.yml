@@ -21,11 +21,19 @@
         url: https://github.com/sylabs/singularity/releases/download/v3.8.2/singularity-ce-3.8.2.tar.gz
         dest: /tmp/singularity.tgz
 
+
+    - name: make singularity build dir
+      ansible.builtin.file:
+        path: /tmp/singularity
+        state: directory
+
     - name: Extract singularity code into /tmp/singularity/
       ansible.builtin.unarchive:
         src: /tmp/singularity.tgz
         dest: /tmp/singularity/
         extra_flags: --strip 1 
+
+
 
     - name: build and install singularity
       command:
