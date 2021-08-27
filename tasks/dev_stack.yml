@@ -10,6 +10,22 @@
         - postgresql-12
         - mariadb-client
         - mariadb-server
+        - apache2
+
+    - name: configure mysql users and some databases
+      include_role:
+        name: geerlingguy.mysql
+
+    - name: configure postgresql users and some databases
+      include_role:
+        name: geerlingguy.postgresql
+
+
+    - name: install uuid-ossp extension
+      become: true
+      become_user: postgres
+      command:
+        cmd: psql  -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
 
     - name: install microsoft packages
       package:
@@ -62,7 +78,12 @@
       apt:
         deb: https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.8-amd64.deb
       when: influx_bin.rc != 0
-        
+
+    - name: start influxdb
+      service:
+        name: influxdb
+        state: restarted
+      when: influx_bin.rc != 0
 
     - name: check if influx executable is present
       shell: "which telegraf"
@@ -74,13 +95,9 @@
         deb: https://dl.influxdata.com/telegraf/releases/telegraf_1.19.3-1_amd64.deb
       when: telegraf_bin.rc != 0
 
-
-
-    - name: start influxdb
-      service:
-        name: influxdb
-        state: restarted
-      when: influx_bin.rc != 0
+    - name: configure telegraf
+      include_role:
+        name: dj-wasabi.telegraf
 
     - name: check if go executable is present
       shell: "/usr/local/go/bin/go version"

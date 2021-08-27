@@ -4,6 +4,9 @@
   connection: local
   become: true
 
+  var_files:
+    - vars/global.yml
+
   tasks:
     - name: add repos
       include: tasks/repos.yml
