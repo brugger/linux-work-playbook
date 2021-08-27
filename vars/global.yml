@@ -4,6 +4,8 @@ mysql_packages:
   - mariadb-server
   - python-mysqldb
 
+mysql_root_password_update: root
+
 mysql_databases: 
   - name: brugger
   - name: cromwell
@@ -19,6 +21,9 @@ mysql_users:
 
 
 postgresql_python_library: python-psycopg3
+
+# Dont let dj-wasabi.telegraf install telegraf
+telegraf_agent_package_method: manual
 
 telegraf_agent_hostname: "{{ inventory_hostname }}"
 telegraf_agent_interval: "60" # seconds
