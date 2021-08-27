@@ -4,7 +4,7 @@
   connection: local
   become: true
 
-  var_files:
+  vars_files:
     - vars/global.yml
 
   tasks:
