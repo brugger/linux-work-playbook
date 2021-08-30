@@ -67,6 +67,6 @@
 
     - name: Add nodesource for nodejs/nsm  repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64] https://deb.nodesource.com/${NODEREPO} {{ansible_distribution_release}} main
+        repo: deb [arch=amd64] https://deb.nodesource.com/node_16.x {{ansible_distribution_release}} main
         state: present
 
