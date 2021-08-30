@@ -53,9 +53,9 @@
         state: present
 
 
-    - name: adding user brugger to group docker
+    - name: adding user  to group docker
       user:
-        name: brugger
+        name: "{{user_name}}"
         groups: docker
         append: yes
 

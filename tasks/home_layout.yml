@@ -5,9 +5,9 @@
 
     - name: make default dirs in home
       ansible.builtin.file:
-        path: "/home/brugger/{{item}}"
+        path: "/home/{{user_name}}/{{item}}"
         state: directory
-        owner: brugger
+        owner: "{{user_name}}"
       loop:
         - bin
         - tmp
@@ -19,12 +19,11 @@
         - .ssh
 
 
-
     - name: make .ssh dirs in home
       ansible.builtin.file:
-        path: "/home/brugger/.ssh"
+        path: "/home/{{user_name}}/.ssh"
         state: directory
-        owner: brugger
+        owner: "{{user_name}}"
         mode: 0600
 
 
