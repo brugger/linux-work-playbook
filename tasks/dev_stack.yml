@@ -117,8 +117,10 @@
       include: singularity.yml
       when: singularity_bin.rc != 0
 
+
     - name: install nodejs
       package:
+        name:
         - nodejs
 
     - name: update npm

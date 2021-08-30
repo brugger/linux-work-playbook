@@ -10,6 +10,7 @@
   tasks:
     - name: add repos
       include: tasks/repos.yml
+      tags: repos
 
     - name: install base packages
       include: tasks/base_packages.yml

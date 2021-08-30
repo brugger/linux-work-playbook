@@ -65,8 +65,8 @@
         url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
         state: present
 
-    - name: Add nodesource for nodejs/nsm  signing key  repository
+    - name: Add nodesource for nodejs/nsm  repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64] https://dl.yarnpkg.com/debian stable main
+        repo: deb [arch=amd64] https://deb.nodesource.com/${NODEREPO} {{ansible_distribution_release}} main
         state: present
 
