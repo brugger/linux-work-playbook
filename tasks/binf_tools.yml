@@ -63,7 +63,7 @@
         make  
         cp bwa /usr/local/bin/bwa  
         rm -rf /tmp/bwa*
-      when: minimap2_bin.rc != 0
+      when: bwa_bin.rc != 0
 
     - name: check if minimap2 executable is present
       shell: "which /usr/local/bin/minimap2"
@@ -79,7 +79,6 @@
         make 
         cp  minimap2 /usr/local/bin/minimap2  
         rm -rf /tmp/minimap2*
-
       when: minimap2_bin.rc != 0
 
 
