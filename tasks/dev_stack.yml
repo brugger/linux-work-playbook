@@ -118,10 +118,11 @@
       when: singularity_bin.rc != 0
 
 
-    - name: install nodejs
+    - name: install nodejs & npm
       package:
         name:
         - nodejs
+        - npm
 
     - name: update npm
       command:
