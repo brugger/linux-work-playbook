@@ -3,7 +3,7 @@
 
   block:
 
-    - name: clone kbr repository
+    - name: clone kbr repositories
       git:
         repo: git@github.com:brugger/{{item}}.git
         dest: /home/{{user_name}}/projects/kbr/{{item}}
