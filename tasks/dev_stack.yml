@@ -117,3 +117,15 @@
       include: singularity.yml
       when: singularity_bin.rc != 0
 
+    - name: install nodejs
+      packages:
+        - nodejs
+
+    - name: update npm
+      command:
+        cmd: npm update npm
+
+
+    - name: install angular
+      command:
+        cmd: npm install -g @angular/cli

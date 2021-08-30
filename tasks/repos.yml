@@ -59,3 +59,14 @@
         repo: deb [arch=amd64] https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb/ubuntu {{ansible_distribution_release}} main
         state: present
 
+
+    - name: Add nodesource for nodejs/nsm  signing key
+      ansible.builtin.apt_key:
+        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        state: present
+
+    - name: Add nodesource for nodejs/nsm  signing key  repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://dl.yarnpkg.com/debian stable main
+        state: present
+
