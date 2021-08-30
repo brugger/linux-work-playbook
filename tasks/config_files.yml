@@ -6,7 +6,7 @@
     - name: clone git repository
       git:
         repo: git@github.com:bruggerk/config_files.git
-        dest: /home/{{user_name}}/software/
+        dest: /home/{{user_name}}/software/config_files
         force: yes
  
 
