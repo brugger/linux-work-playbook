@@ -19,7 +19,7 @@
 
     - name: Extract igv into /usr/local/lib/
       ansible.builtin.unarchive:
-        src: /tmp/igv.tgz
+        src: /tmp/igv.zip
         dest: /usr/local/lib/
       when: igv_bin.rc != 0
 
