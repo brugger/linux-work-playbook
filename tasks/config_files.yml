@@ -4,10 +4,10 @@
   block:
 
     - name: clone git repository
-    git:
-      repo: git@github.com:bruggerk/config_files.git
-      dest: /home/{{user_name}}/software
-      force: yes
+      git:
+        repo: git@github.com:bruggerk/config_files.git
+        dest: /home/{{user_name}}/software
+        force: yes
  
 
     - name: rename tmp ssh-dir so avoid clashes
@@ -20,4 +20,4 @@
         cmd: sh make_links.sh
         chdir: /home/{{user_name}}/software/config_files
 
-        
+
