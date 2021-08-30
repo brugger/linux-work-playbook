@@ -26,11 +26,9 @@
 
     - name: Create a symbolic link
       ansible.builtin.file:
-        src: "{{item}}"
+        src: /usr/local/lib/IGV_Linux_2.11.0/igv.sh
         dest: /usr/local/bin/igv
         state: link
-      with_fileglob:
-        - "/usr/local/lib/*/igv.sh"
       when: igv_bin.rc != 0
 
 
