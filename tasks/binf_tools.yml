@@ -4,11 +4,9 @@
   block:
 
     - name: check if igv executable is present
-      shell: "/usr/local/bin/igv"
+      shell: "which /usr/local/bin/igv"
       register: igv_bin
       ignore_errors: true
-
-
 
     - name: download IGV
       get_url:
