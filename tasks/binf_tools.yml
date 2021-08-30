@@ -31,10 +31,9 @@
 
 
     - name: check if samtools executable is present
-      shell: "/usr/local/bin/samtools"
+      shell: "which /usr/local/bin/samtools"
       register: samtools_bin
       ignore_errors: true
-
 
     - name: Install samtools
       ansible.builtin.shell:  |
@@ -47,6 +46,42 @@
         make install  
         rm -rf /tmp/samtools*
       when: samtools_bin.rc != 0
+
+
+    - name: check if bwa executable is present
+      shell: "which /usr/local/bin/bwa"
+      register: bwa_bin
+      ignore_errors: true
+
+
+    - name: Install bwa
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/bwa.tgz.bz2 https://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.17.tar.bz2 
+        mkdir /tmp/bwa 
+        tar jxvf /tmp/bwa.tgz.bz2 --strip 1 -C /tmp/bwa 
+        cd /tmp/bwa 
+        make  
+        cp bwa /usr/local/bin/bwa  
+        rm -rf /tmp/bwa*
+      when: minimap2_bin.rc != 0
+
+    - name: check if minimap2 executable is present
+      shell: "which /usr/local/bin/minimap2"
+      register: minimap2_bin
+      ignore_errors: true
+
+    - name: Install minimap2
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/minimap2.tgz.bz2 https://github.com/lh3/minimap2/releases/download/v2.20/minimap2-2.20.tar.bz2 
+        mkdir /tmp/minimap2 
+        tar jxvf /tmp/minimap2.tgz.bz2 --strip 1 -C /tmp/minimap2 
+        cd /tmp/minimap2 
+        make 
+        cp  minimap2 /usr/local/bin/minimap2  
+        rm -rf /tmp/minimap2*
+
+      when: minimap2_bin.rc != 0
+
 
 
 
