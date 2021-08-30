@@ -33,7 +33,7 @@ telegraf_agent_interval: "60" # seconds
 telegraf_agent_output:
   - type: influxdb
     config:
-      - urls = [ "http://{{ head_node }}:8086/" ]
+      - urls = [ "http://localhost:8086/" ]
       - database = localhost
       - username = admin
       - password = admin
