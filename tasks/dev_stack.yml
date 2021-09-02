@@ -53,7 +53,7 @@
         state: present
 
 
-    - name: adding user  to group docker
+    - name: adding user {{user_name}} to group docker
       user:
         name: "{{user_name}}"
         groups: docker
