@@ -5,7 +5,7 @@
 
     - name: clone kbr repositories
       git:
-        repo: git@github.com:brugger/{{item}}.git
+        repo: git@github-brugger:brugger/{{item}}.git
         dest: /home/{{user_name}}/projects/kbr/{{item}}
         force: yes
       loop:
