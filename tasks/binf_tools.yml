@@ -82,5 +82,48 @@
       when: minimap2_bin.rc != 0
 
 
+    - name: make /usr/local/jars for jars
+      file:
+        dest: /usr/local/jars
+        state: directory
+        owner: "{{user_name}}"
+        mode: 0755
 
+    - name: check for cromwell-60.jar
+      stat:
+        path: /usr/local/jars/cromwell-60.jar
+      register: cromwell
+
+
+    - name: get cromwell jar 60.0
+      get_url:
+        url: https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
+        dest: /usr/local/jars
+      when: not cromwell.stat.exists
+
+
+    - name: check for womtool-60.jar
+      stat:
+        path: /usr/local/jars/womtool-60.jar
+      register: womtool
+
+
+    - name: get womtool jar 60.0
+      get_url:
+        url: https://github.com/broadinstitute/cromwell/releases/download/60/womtool-60.jar
+        dest: /usr/local/jars
+      when: not womtool.stat.exists
+
+
+    - name: get cromwell wrapper
+      get_url:
+        url: https://raw.githubusercontent.com/neuromics/cromwell-utils/main/bin/cromwell
+        dest: /usr/local/bin/cromwell
+        mode: 0755
+
+    - name: get womtool wrapper
+      get_url:
+        url: https://raw.githubusercontent.com/neuromics/cromwell-utils/main/bin/womtool
+        dest: /usr/local/bin/womtool
+        mode: 0755
 
