@@ -3,6 +3,11 @@
 
   block:
 
+    - name: install singularity build dependency packages
+      package:
+        name: 
+        - libcurl4-openssl-dev
+
     - name: check if igv executable is present
       shell: "which /usr/local/bin/igv"
       register: igv_bin
@@ -126,4 +131,39 @@
         url: https://raw.githubusercontent.com/neuromics/cromwell-utils/main/bin/womtool
         dest: /usr/local/bin/womtool
         mode: 0755
+
+
+    - name: check if bcftools executable is present
+      shell: "which /usr/local/bin/bcftools"
+      register: bcftools_bin
+      ignore_errors: true
+
+    - name: Install bcftools
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/bcftools.tar.bz2 https://github.com/samtools/bcftools/releases/download/1.14/bcftools-1.14.tar.bz2
+        mkdir /tmp/bcftools 
+        tar jxvf /tmp/bcftools.tar.bz2 --strip 1 -C /tmp/bcftools 
+        cd /tmp/bcftools 
+        ./configure --prefix=/usr/local/
+        make  
+        make install  
+        rm -rf /tmp/bcftools*
+      when: bcftools_bin.rc != 0
+
+    - name: check if htslib executable is present
+      shell: "which /usr/local/bin/tabix"
+      register: htslib_bin
+      ignore_errors: true
+
+    - name: Install htslib
+      ansible.builtin.shell:  |
+        curl -Lo /tmp/htslib.tar.bz2 https://github.com/samtools/htslib/releases/download/1.14/htslib-1.14.tar.bz2
+        mkdir /tmp/htslib 
+        tar jxvf /tmp/htslib.tar.bz2 --strip 1 -C /tmp/htslib 
+        cd /tmp/htslib 
+        ./configure --prefix=/usr/local
+        make  
+        make install  
+        rm -rf /tmp/htslib*
+      when: htslib_bin.rc != 0
 
