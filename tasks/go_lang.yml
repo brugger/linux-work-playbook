@@ -4,7 +4,7 @@
     
     - name: download latest version
       get_url:
-        url: https://golang.org/dl/go1.17.linux-amd64.tar.gz
+        url: https://golang.org/dl/go1.18.linux-amd64.tar.gz
         dest: /tmp/go.tgz
 
     - name: delete old installation (if present)
